@@ -1,0 +1,187 @@
+        /* Dark Mode Calculator Styles */
+        :root {
+            --primary-dark: #121212;
+            --secondary-dark: #1e1e1e;
+            --accent-color: #4a00e0;
+            --accent-glow: rgba(74, 0, 224, 0.7);
+            --text-light: #f0f0f0;
+            --text-dim: #aaaaaa;
+            --button-dark: #2a2a2a;
+            --button-hover: #3a3a3a;
+            --button-active: #4a4a4a;
+            --shadow-heavy: 0 10px 20px rgba(0, 0, 0, 0.5);
+            --button-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            --button-inset-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            --button-border: 1px solid rgba(255, 255, 255, 0.05);
+            --button-active-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+            color: var(--text-light);
+        }
+
+        .calculator {
+            width: 320px;
+            background: var(--primary-dark);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-heavy), 0 0 30px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .calculator:hover {
+            transform: translateY(-5px);
+        }
+
+        .display {
+            padding: 25px 20px;
+            text-align: right;
+            background: var(--secondary-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .display::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        .previous-operand {
+            font-size: 1rem;
+            color: var(--text-dim);
+            height: 20px;
+            margin-bottom: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .current-operand {
+            font-size: 2.5rem;
+            font-weight: 300;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+        }
+
+        button {
+            border: var(--button-border);
+            outline: none;
+            padding: 20px;
+            font-size: 1.2rem;
+            background: var(--button-dark);
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: var(--button-shadow), var(--button-inset-shadow);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        button:hover {
+            background: var(--button-hover);
+            box-shadow: var(--button-shadow), var(--button-inset-shadow), 0 0 15px rgba(255, 255, 255, 0.05);
+        }
+
+        button:active {
+            background: var(--button-active);
+            transform: scale(0.95);
+            box-shadow: var(--button-active-shadow), var(--button-inset-shadow);
+        }
+
+        button.operator {
+            background: var(--accent-color);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), var(--button-inset-shadow), 0 0 10px var(--accent-glow);
+        }
+
+        button.operator:hover {
+            background: #5a1aff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), var(--button-inset-shadow), 0 0 15px var(--accent-glow);
+        }
+
+        button.operator:active {
+            background: #6a2aff;
+            box-shadow: var(--button-active-shadow), var(--button-inset-shadow), 0 0 8px var(--accent-glow);
+        }
+
+        button.span-two {
+            grid-column: span 2;
+        }
+
+        button.equals {
+            background: var(--accent-color);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), var(--button-inset-shadow), 0 0 10px var(--accent-glow);
+        }
+
+        button.equals:hover {
+            background: #5a1aff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), var(--button-inset-shadow), 0 0 15px var(--accent-glow);
+        }
+
+        button.equals:active {
+            background: #6a2aff;
+            box-shadow: var(--button-active-shadow), var(--button-inset-shadow), 0 0 8px var(--accent-glow);
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        .brand {
+            text-align: center;
+            padding: 10px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            background: var(--secondary-dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    
